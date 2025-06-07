@@ -1,0 +1,14 @@
+{
+  "name": "hiwari",
+  "version": "1.0.0",
+  "description": "日割りコスト管理アプリ",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1",
+    "@types/uuid": "^10.0.0",
+    "dayjs": "^1.11.13",
+    "uuid": "^11.1.0"
+  }
+}
