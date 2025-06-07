@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd app
-        npm ci
+        npm install
 
     - name: Build application
       run: |
