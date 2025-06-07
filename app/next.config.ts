@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // GitHub Pagesでの配信時にbasePath設定が必要な場合は下記を有効化
-  // basePath: '/Hiwari',
-  // assetPrefix: '/Hiwari/',
+  basePath: '/Hiwari',
+  assetPrefix: '/Hiwari/',
 };
 
 export default nextConfig;
