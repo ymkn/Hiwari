@@ -33,10 +33,6 @@ export default function ItemsPage() {
     router.push('/items/new');
   };
 
-  const handleEditItem = (id: string) => {
-    router.push(`/items/${id}/edit`);
-  };
-
   const handleDeleteRequest = (id: string) => {
     setItemToDelete(id);
     setDeleteDialogOpen(true);
@@ -90,7 +86,6 @@ export default function ItemsPage() {
 
       <ItemList
         items={items}
-        onEdit={handleEditItem}
         onDelete={handleDeleteRequest}
       />
 

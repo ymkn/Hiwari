@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import {
   Typography,
   Box,
@@ -8,24 +8,24 @@ import {
   Snackbar,
   CircularProgress
 } from '@mui/material';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useData } from '@/context/DataContext';
 import { ItemFormData } from '@/types';
 import ItemForm from '@/components/ItemForm';
 
 /**
- * データ編集画面
+ * データ編集画面のメインコンポーネント
  */
-export default function EditItemPage() {
+function EditItemContent() {
   const router = useRouter();
-  const params = useParams();
+  const searchParams = useSearchParams();
   const { getItem, updateItem, error, clearError } = useData();
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState<ItemFormData | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
-  const itemId = params.id as string;
+  const itemId = searchParams.get('id');
 
   // 編集対象のアイテム情報を取得
   useEffect(() => {
@@ -44,10 +44,14 @@ export default function EditItemPage() {
       } else {
         setNotFound(true);
       }
+    } else {
+      setNotFound(true);
     }
   }, [itemId, getItem]);
 
   const handleSubmit = async (data: ItemFormData) => {
+    if (!itemId) return;
+    
     setLoading(true);
     try {
       await updateItem(itemId, data);
@@ -123,5 +127,20 @@ export default function EditItemPage() {
         </Alert>
       </Snackbar>
     </Box>
+  );
+}
+
+/**
+ * データ編集画面
+ */
+export default function EditItemPage() {
+  return (
+    <Suspense fallback={
+      <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+        <CircularProgress />
+      </Box>
+    }>
+      <EditItemContent />
+    </Suspense>
   );
 }

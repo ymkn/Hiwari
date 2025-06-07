@@ -21,14 +21,13 @@ import { formatDateDisplay } from '@/utils/dateHelpers';
 
 interface ItemListProps {
   items: Item[];
-  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
 /**
  * アイテム一覧表示コンポーネント
  */
-const ItemList: React.FC<ItemListProps> = ({ items, onEdit, onDelete }) => {
+const ItemList: React.FC<ItemListProps> = ({ items, onDelete }) => {
   const router = useRouter();
 
   const getPaymentIntervalLabel = (interval: string) => {
@@ -56,7 +55,7 @@ const ItemList: React.FC<ItemListProps> = ({ items, onEdit, onDelete }) => {
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <IconButton
             size="small"
-            onClick={() => onEdit(params.row.id)}
+            onClick={() => router.push(`/items/edit?id=${params.row.id}`)}
             color="primary"
             sx={{ '&:hover': { backgroundColor: 'primary.main', color: 'white' } }}
           >
