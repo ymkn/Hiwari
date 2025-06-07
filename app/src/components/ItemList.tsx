@@ -16,7 +16,7 @@ import {
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { useRouter } from 'next/navigation';
 import { Item } from '@/types';
-import { formatCurrency, formatCurrencyDetailed, formatDailyCost, calculateCostPerMonth, calculateCostPerYear } from '@/utils/calculations';
+import { formatCurrency, formatDailyCost, calculateCostPerMonth, calculateCostPerYear } from '@/utils/calculations';
 import { formatDateDisplay } from '@/utils/dateHelpers';
 
 interface ItemListProps {

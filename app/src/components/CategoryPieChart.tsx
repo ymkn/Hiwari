@@ -68,7 +68,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({ summaryData, displa
   ];
 
   // カスタムツールチップ
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { name: string; value: number; itemCount: number } }> }) => {
     if (active && payload && payload[0]) {
       const data = payload[0].payload;
       return (
@@ -98,11 +98,11 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({ summaryData, displa
   };
 
   // カスタムレジェンド
-  const CustomLegend = (props: any) => {
+  const CustomLegend = (props: { payload?: Array<{ value: string; color: string }> }) => {
     const { payload } = props;
     return (
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center', mt: 1 }}>
-        {payload.map((entry: any, index: number) => (
+        {payload?.map((entry: { value: string; color: string }, index: number) => (
           <Box
             key={`legend-${index}`}
             sx={{

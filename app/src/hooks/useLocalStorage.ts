@@ -44,6 +44,7 @@ export const useLocalStorage = <T>(
   // コンポーネントマウント時にlocalStorageから値を読み込み
   useEffect(() => {
     setStoredValue(getStoredValue());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [storedValue, setValue];

@@ -19,8 +19,8 @@ import {
   InputAdornment
 } from '@mui/material';
 import { ItemFormData } from '@/types';
-import { isValidDateRange, getTodayString, addMonths, addYears } from '@/utils/dateHelpers';
-import { calculateCostPerDay, formatCurrencyDetailed } from '@/utils/calculations';
+import { isValidDateRange, getTodayString, addYears } from '@/utils/dateHelpers';
+import { calculateCostPerDay, formatCurrency } from '@/utils/calculations';
 
 interface ItemFormProps {
   initialData?: ItemFormData;
@@ -68,7 +68,7 @@ const ItemForm = ({
     try {
       const cost = calculateCostPerDay(formData);
       setPreviewCost(cost);
-    } catch (error) {
+    } catch {
       setPreviewCost(0);
     }
   }, [formData]);
@@ -134,7 +134,7 @@ const ItemForm = ({
   };
 
   const handleSelectChange = (field: keyof ItemFormData) => (
-    e: any
+    e: { target: { value: string } }
   ) => {
     setFormData(prev => ({
       ...prev,
@@ -307,7 +307,7 @@ const ItemForm = ({
                   1日のコスト（プレビュー）
                 </Typography>
                 <Typography variant="h6" color="primary">
-                  {formatCurrencyDetailed(previewCost)}
+                  {formatCurrency(previewCost)}
                 </Typography>
               </Alert>
             )}
